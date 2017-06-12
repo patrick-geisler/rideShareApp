@@ -18,15 +18,13 @@ class App extends React.Component {
 
     render() {
 
-        let route = <Content />
-        if (this.state.user === null) {
-            route = <LoginPage loginAction={this.loginAction} />
-        }
-
         return (
             <Router>
                 <div>
-                    {route}
+                    <Route path='/login' component={LoginPage} />
+                    <Route path='/rideshare' render={() => {
+                        return <Content user={this.state.user} />
+                    }} />
                 </div>
             </Router>
         )
