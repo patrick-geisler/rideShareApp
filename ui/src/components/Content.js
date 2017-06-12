@@ -5,7 +5,7 @@ import RiderPage from './RiderPage';
 import Navigation from './Navigation'
 import {BrowserRouter as Router, Route , Redirect, Link} from 'react-router-dom'
 
-const Content = () => {
+const Content = (props) => {
 
   return(
     <div>
@@ -13,9 +13,9 @@ const Content = () => {
         <Navigation />
       </div>
         <div>
-          <Route exact path='/rideshare' component={LandingPage}/> 
-          <Route path='/rideshare/driver' component={DriverPage}/> 
-          <Route path='/rideshare/rider' component={RiderPage}/> 
+          <Route exact path='/rideshare' component={LandingPage}/>
+          <Route path='/rideshare/driver' component={DriverPage}/>
+          <Route path='/rideshare/rider' component={RiderPage}/>
         </div>
     </div>
   )
