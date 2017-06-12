@@ -18,7 +18,7 @@ class App extends React.Component {
 
     render() {
 
-        let route = <Redirect to='/rideshare' />
+        let route = <Content />
         if (this.state.user === null) {
             route = <LoginPage loginAction={this.loginAction} />
         }
