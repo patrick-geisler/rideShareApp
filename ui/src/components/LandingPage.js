@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom'
 
 
 
@@ -11,8 +12,8 @@ const LandingPage = () => {
             <div className="row">
                 <div className="small-12 small-centered medium-8 medium-centered large-4 large-centered columns">
                     <ul className="button-group small even-2">
-                        <li><button>Book A Ride</button></li>
-                        <li><button>Create A Trip</button></li>
+                        <li><Link to="/rideshare/rider"><button>Book A Ride</button></Link></li>
+                        <li><Link to="/rideshare/driver"><button>Create A Trip</button></Link></li>
                     </ul>
                 </div>
                 <div className="small-12 small-centered medium-8 medium-centered large-4 large-centered columns">
@@ -80,10 +81,3 @@ const LandingPage = () => {
 
 
 export default LandingPage;
-
-
-
-
-
-
-
