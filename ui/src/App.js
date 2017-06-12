@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
-import DriverPage from './components/DriverPage';
-import RiderPage from './components/RiderPage';
-
-
+import {BrowserRouter as Router, Route , Redirect} from 'react-router-dom'
+import Content from './components/Content'
 const App = () => {
+
   return(
-    <div>
-      <LandingPage />
-      <LoginPage />
-      <DriverPage />
-      <RiderPage />
-    </div>
+    <Router>
+        <div> 
+          <Route exact path='/' component={LoginPage}/> 
+          <Route path='/rideshare' component={Content}/>  
+           
+        </div>
+    </Router>
   )
 }
 
