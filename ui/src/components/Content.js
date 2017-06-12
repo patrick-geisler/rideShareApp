@@ -13,7 +13,7 @@ const Content = () => {
         <Navigation />
       </div>
         <div>
-          <Route path='/rideshare/landing' component={LandingPage}/> 
+          <Route exact path='/rideshare' component={LandingPage}/> 
           <Route path='/rideshare/driver' component={DriverPage}/> 
           <Route path='/rideshare/rider' component={RiderPage}/> 
         </div>
