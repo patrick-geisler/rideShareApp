@@ -14,7 +14,7 @@ class RiderPage extends React.Component{
     event.preventDefault()
   }
   render(){
-    console.log('rider page.render', this.state);
+    console.log('rider page.render ', this.state);
     return(
       <div className='row'>
         <h1>
