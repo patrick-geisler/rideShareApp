@@ -11,19 +11,14 @@ app.get('/api/ping', (request, response) => {
 })
 
 const trips = [
-    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "6/10/2017" ,time: 800 ,leavingFrom: "Franklin" }
-    , {id: 456, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "6/10/2017" ,time: 900 ,leavingFrom: "Franklin" }
-    , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "6/10/2017" ,time: 830 ,leavingFrom: "Downtown" }
+    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "1/1/2017" ,time: 800 ,leavingFrom: "Franklin", currPass:[]  }
+    , {id: 456, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "6/10/2017" ,time: 900 ,leavingFrom: "Franklin", currPass:[]  }
+    , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "6/10/2017" ,time: 830 ,leavingFrom: "Downtown", currPass:[]  }
 ];
 
 app.get('/api/trips', (request, response) => {
     // console.log(request.query)
-    // switch(request.query.filter) {
-    //         const activeTodos = trips.filter(trips => numPass)
-    //         response.json(activeTodos);
-    //         break;
-    //     default: response.json(trips);
-    // }
+    response.json(trips)
 });
 
 app.post('/api/trips', (request, response) => {
