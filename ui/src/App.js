@@ -21,7 +21,6 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <Route path='/login' component={LoginPage} />
                     <Route path='/rideshare' render={() => {
                         return <Content user={this.state.user} />
                     }} />
