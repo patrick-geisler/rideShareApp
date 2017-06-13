@@ -5,6 +5,7 @@ class LoginPage extends React.Component {
 
     state = {
         login: ''
+        , loggedIn: false
     }
 
     loginChange = (event) => {
@@ -14,29 +15,41 @@ class LoginPage extends React.Component {
     submit = (event) => {
         event.preventDefault();
         console.log(this.state.login)
-        this.props.loginAction(this.state.login)
+        this.setState({loggedIn: true})
     }
 
+    logout = () => {
+        this.setState({login: '', loggedIn: false});
+    }
 
     render() {
-        return (
-            <div className='gridContainer'>
-                <div className='row'>
-                    <div className='small-3 small-centered columns'>
-                        <h1>Please Login</h1>
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='small-3 small-centered columns'>
-                        <form onSubmit={this.submit}>
-                            <input type="text" onChange={this.loginChange} name="LoginPage" placeholder="enter username"/>
-                            <button type="submit" className="tiny">Sign-in</button>
-                        </form>
-                    </div>
 
+        if (!this.state.loggedIn) {
+            return (
+                <div>
+                    <form onSubmit={this.submit}>
+                        <div className='row'>
+                            <div className='small-7 columns padding-right-none'>
+                                <input className='with-postfix' type="text" onChange={this.loginChange} name="LoginPage" placeholder="enter username"/>
+                            </div>
+                            <div className='small-5 columns padding-left-none'>
+                                <button type="submit" className="postfix">Sign-in</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className='row'>
+                    <div className='small-12 columns'>
+                        <p>Hello {this.state.login} <span onClick={this.logout} className="icon icon-exit" style={{fontSize: '2em'}}></span></p>
+                    </div>
+                </div>
+            )
+        }
+
+
     }
 }
 
