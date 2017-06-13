@@ -1,58 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TripSearchTable from './TripSearchTable'
+import axios from 'axios'
 
 
-
-
-const RiderPage = () => {
-  return(
-
-    <div className='row'>
-      <h1>
-        Book A Rizzide
-      </h1>
-      <div className='small-6 inline-block small-centered columns'>
-        <form>
-          <div className="inline-block row">
-            <div className="inline-block padding-medium">
-              <label>Early Bound</label>
-              <input type="time" placeholder='Early'></input>
+class RiderPage extends React.Component{
+  changeState = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+  onSubmit = (event) => {
+    event.preventDefault()
+  }
+  render(){
+    console.log('rider page.render ', this.state);
+    const tripSearchTable = <TripSearchTable search={this.state}/>
+    return(
+      <div className='row'>
+        <h1>
+          Book A Ride
+        </h1>
+        <div className='small-6 inline-block small-centered columns'>
+          <form onSubmit={this.onSubmit}>
+            <div className="inline-block row">
+              <div className="inline-block padding-medium">
+                <label>Early Bound</label>
+                <input type="time" placeholder='Early' name="earlyBound" onChange={this.changeState}></input>
+              </div>
+              <div className="inline-block padding-medium">
+                <label>Late Bound</label>
+                <input type="time" placeholder='Late' name="lateBound" onChange={this.changeState}></input>
+              </div>
             </div>
-            <div className="inline-block padding-medium">
-              <label>Late Bound</label>
-              <input type="time" placeholder='Late'></input>
-            </div>
+              <input type="date" name="myDate" onChange={this.changeState}></input>
+              <button className='button'> Filter </button>
+          </form>
+            {tripSearchTable}
           </div>
-            <input type="date"></input>
-            <button className='button'> Submit </button>
-        </form>
-        <table className="table side-borders-none actionable" summary="This summary is for screen readers and should summarize the structure of the table headers and rows">
-        <caption className="show-for-sr">Basic Table</caption>
-            <thead>
-                <tr>
-                    <th width="500" className='text-left'>Name</th>
-                    <th width="400" className='text-left'>Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Suzie</td>
-                    <td>6:00</td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>8:00</td>
-                </tr>
-                <tr>
-                    <td>Joe</td>
-                    <td>7:30</td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
 
-      </div>
-  )
+        </div>
+    )
+  }
 }
 
 
