@@ -17,7 +17,11 @@ const trips = [
 ];
 
 app.get('/api/trips', (request, response) => {
-    // console.log(request.query)
+    console.log(request.query);
+    const filterTrips = trips.filter(trip => {
+
+    })
+
     response.json(trips)
 });
 

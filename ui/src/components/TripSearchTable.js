@@ -1,24 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import TripRow from './TripRow'
 
 
 class TripSearchTable extends React.Component{
+constructor(props){
+  super(props)
+}
 state = {
   searched: false,
   trips:[]
 }
 componentDidMount(){
-  axios.get('/api/trips', this.props)
+  axios.get('/api/trips', {
+    params: {
+      ...this.props.search
+    }
+  })
   .then(response =>{
+    console.log(`Component Did mount search`, response.data);
     this.setState({
       searched: true,
       trips: response.data
     })
   })
 }
-render(){
+
+componentWillReceiveProps(){
   console.log(this.props);
+  axios.get('/api/trips', {
+    params: {
+      ...this.props.search
+    }
+  })
+  .then(response =>{
+    console.log(`Cpom will recieve search`, response.data)
+    this.setState({
+      searched: true,
+      trips: response.data
+    })
+  })
+}
+
+render(){
   if (this.state.searched === false){
     return(
       <div>
@@ -33,6 +58,9 @@ render(){
       </div>
     )
   }
+  const tripRows = this.state.trips.map(trip => {
+    return <TripRow trip={trip} key={trip.id}/>
+  })
   return(
     <table className="table side-borders-none actionable" summary="This summary is for screen readers and should summarize the structure of the table headers and rows">
       <caption className="show-for-sr">Basic Table</caption>
@@ -44,21 +72,7 @@ render(){
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td>Suzie</td>
-                  <td>6:00</td>
-                  <td>6</td>
-              </tr>
-              <tr>
-                  <td>Mark</td>
-                  <td>8:00</td>
-                  <td>6</td>
-              </tr>
-              <tr>
-                  <td>Joe</td>
-                  <td>7:30</td>
-                  <td>6</td>
-              </tr>
+              {tripRows}
           </tbody>
         </table>
     )

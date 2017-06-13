@@ -14,10 +14,11 @@ class RiderPage extends React.Component{
     event.preventDefault()
   }
   render(){
+    console.log('rider page.render', this.state);
     return(
       <div className='row'>
         <h1>
-          Book A Rizzide
+          Book A Ride
         </h1>
         <div className='small-6 inline-block small-centered columns'>
           <form onSubmit={this.onSubmit}>
@@ -31,10 +32,10 @@ class RiderPage extends React.Component{
                 <input type="time" placeholder='Late' name="lateBound" onChange={this.changeState}></input>
               </div>
             </div>
-              <input type="date" name="date" onChange={this.changeState}></input>
+              <input type="date" name="myDate" onChange={this.changeState}></input>
               <button className='button'> Filter </button>
           </form>
-            <TripSearchTable {...this.state}/>
+            <TripSearchTable search={this.state}/>
           </div>
 
         </div>
