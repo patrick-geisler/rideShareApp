@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LandingPage from './LandingPage';
 import DriverPage from './DriverPage';
 import RiderPage from './RiderPage';
 import Navigation from './Navigation'
-import {BrowserRouter as Router, Route , Redirect, Link} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 
 const Content = (props) => {
 

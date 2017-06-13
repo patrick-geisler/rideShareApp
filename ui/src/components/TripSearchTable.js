@@ -1,13 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import TripRow from './TripRow'
 
 
 class TripSearchTable extends React.Component{
-constructor(props){
-  super(props)
-}
 state = {
   searched: false,
   trips:[]

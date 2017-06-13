@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TripSearchTable from './TripSearchTable'
-import axios from 'axios'
 
 
 class RiderPage extends React.Component{
