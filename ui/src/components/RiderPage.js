@@ -5,24 +5,22 @@ import ReactDOM from 'react-dom';
 
 
 const RiderPage = () => {
-  const divStyle = {
-    display: 'inline-block',
-    textAlign: 'center',
-    marginLeft: '40px',
-    paddingBottom: '20px'
-  };
   return(
+
     <div className='row'>
-      <div className='small-5 small-centered columns'>
+      <h1>
+        Book A Rizzide
+      </h1>
+      <div className='small-6 inline-block small-centered columns'>
         <form>
-          <div style={divStyle}>
-            <div style={divStyle}>
+          <div className="inline-block row">
+            <div className="inline-block padding-medium">
               <label>Early Bound</label>
-              <input type="textbox" placeholder='Early' className="error"></input>
+              <input type="time" placeholder='Early'></input>
             </div>
-            <div style={divStyle}>
+            <div className="inline-block padding-medium">
               <label>Late Bound</label>
-              <input type="textbox" placeholder='Late'></input>
+              <input type="time" placeholder='Late'></input>
             </div>
           </div>
             <input type="date"></input>
