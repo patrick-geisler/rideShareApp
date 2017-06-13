@@ -22,3 +22,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.row{
+  margin: 0px auto;
+  text-align: center
+}
+h1{
+  text-align: center
+}
