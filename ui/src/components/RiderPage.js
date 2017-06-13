@@ -15,6 +15,7 @@ class RiderPage extends React.Component{
   }
   render(){
     console.log('rider page.render ', this.state);
+    const tripSearchTable = <TripSearchTable search={this.state}/>
     return(
       <div className='row'>
         <h1>
@@ -35,7 +36,7 @@ class RiderPage extends React.Component{
               <input type="date" name="myDate" onChange={this.changeState}></input>
               <button className='button'> Filter </button>
           </form>
-            <TripSearchTable search={this.state}/>
+            {tripSearchTable}
           </div>
 
         </div>

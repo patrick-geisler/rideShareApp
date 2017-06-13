@@ -27,11 +27,11 @@ componentDidMount(){
   })
 }
 
-componentWillReceiveProps(){
-  console.log(this.props);
+componentWillReceiveProps(nextProps){
+  console.log('TripSeearchTable.componentWillReceiveProps()', nextProps);
   axios.get('/api/trips', {
     params: {
-      ...this.props.search
+      ...nextProps.search
     }
   })
   .then(response =>{
