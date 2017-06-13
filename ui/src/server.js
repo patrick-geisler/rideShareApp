@@ -12,7 +12,7 @@ app.get('/api/ping', (request, response) => {
 
 const trips = [
     {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "1/1/2017" ,time: 800 ,leavingFrom: "Franklin", currPass:[]  }
-    , {id: 456, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "6/10/2017" ,time: 900 ,leavingFrom: "Franklin", currPass:[]  }
+    , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "6/10/2017" ,time: 900 ,leavingFrom: "Franklin", currPass:[]  }
     , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "6/10/2017" ,time: 830 ,leavingFrom: "Downtown", currPass:[]  }
 ];
 
