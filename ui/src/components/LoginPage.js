@@ -28,11 +28,11 @@ class LoginPage extends React.Component {
             return (
                 <div>
                     <form onSubmit={this.submit}>
-                        <div className='row'>
-                            <div className='small-7 columns padding-right-none'>
+                        <div className='row padding-medium'>
+                            <div className='small-6  large-7 columns padding-none'>
                                 <input className='with-postfix' type="text" onChange={this.loginChange} name="LoginPage" placeholder="enter username"/>
                             </div>
-                            <div className='small-5 columns padding-left-none'>
+                            <div className='small-6 large-5 padding-left-none columns'>
                                 <button type="submit" className="postfix">Sign-in</button>
                             </div>
                         </div>
@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
             return (
                 <div className='row'>
                     <div className='small-12 columns'>
-                        <p>Hello {this.state.login} <span onClick={this.logout} className="icon icon-exit" style={{fontSize: '2em'}}></span></p>
+                        <p>Hello {this.state.login} <span onClick={this.logout} className="icon icon-exit" style={{fontSize: '2em', padding: '10px'}}></span></p>
                     </div>
                 </div>
             )
