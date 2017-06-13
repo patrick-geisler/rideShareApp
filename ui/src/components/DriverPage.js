@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import '.././App.css';
 import axios from 'axios';
-import {BrowserRouter as Router, Route , Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 
 
