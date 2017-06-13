@@ -59,11 +59,11 @@ render(){
           <div className="row">
               <div className="large-3 large-centered inline-block columns">
                   <label>Leaving From</label>
-                  <input id="franklin" name="leavingFrom" type="radio" value="franklin"
-                      onChange={this.stateChange} checked={this.state.leavingFrom === 'franklin'} />
+                  <input id="franklin" name="leavingFrom" type="radio" value="Franklin"
+                      onChange={this.stateChange} checked={this.state.leavingFrom === 'Franklin'} />
                   <label for="franklin">Franklin</label>
-                  <input id="downtown" name="leavingFrom" type="radio" value="downtown"
-                      onChange={this.stateChange} checked={this.state.leavingFrom === 'downtown'}/>
+                  <input id="downtown" name="leavingFrom" type="radio" value="Downtown"
+                      onChange={this.stateChange} checked={this.state.leavingFrom === 'Downtown'}/>
                   <label for="downtown">Downtown</label>
               </div>
               <div className="large-3 large-centered inline-block columns">
