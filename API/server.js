@@ -50,11 +50,14 @@ app.get('/api/trips', (request, response) => {
 });
 
 app.post('/api/trips', (request, response) => {
-    console.log(request.body);
+    let numPass = request.body.numPass
+    if (numPass === ''){
+      numPass = 1
+    }
     const newTrip = {
         id: Math.floor(Math.random()*10000)
         , name: request.body.name
-        , numPass: request.body.numPass
+        , numPass: numPass
         , plateNum: request.body.plateNum
         , date: request.body.date
         , time: request.body.time
