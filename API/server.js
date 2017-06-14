@@ -45,8 +45,8 @@ app.get('/api/trips', (request, response) => {
 
 app.post('/api/trips', (request, response) => {
     console.log(request.body.numPass);
-    let numPass = ''
-    if (request.body.numPass === ''){
+    let numPass = request.body.numPass
+    if (numPass === ''){
       numPass = 1
     }
     const newTrip = {
