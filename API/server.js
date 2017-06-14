@@ -71,4 +71,26 @@ app.post('/api/trips', (request, response) => {
 })
 
 
+const users = [];
+
+app.post('/api/users', (request, response) => {
+    console.log('/api/users POST', request.body)
+    let userFound = false;
+    for (var i = 0; i < users.length; i++) {
+        if (users[i].source === request.body.source
+            && users[i].sourceId === request.body.sourceId) {
+            users[i].lastLogin = new Date();
+            userFound = true;
+            response.json(users[i]);
+            break;
+        }
+    }
+
+    if (!userFound) {
+        users.push(Object.assign({}, request.body, {lastLogin: new Date(), id: Math.floor(Math.random()*1000000)}))
+        response.json(users[users.length-1]);
+    }
+})
+
+
 app.listen(6500, () => console.log('started'))

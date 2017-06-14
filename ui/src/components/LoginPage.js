@@ -1,6 +1,7 @@
 import React from 'react';
-
 import {connect} from 'react-redux'
+
+import axios from 'axios'
 
 import FacebookLogin from 'react-facebook-login'
 
@@ -23,20 +24,27 @@ class LoginPage extends React.Component {
       console.log('LoginPage.responseFacebook()', response);
       const loggedInUser = {
           source: 'facebook'
-          , id: response.id
+          , sourceId: response.id
           , name: response.name
           , picURL: response.picture.data.url
           , acccessToken: response.accessToken
       }
-      this.setState({
-          user: loggedInUser
-          , loggedIn: true
-      })
 
-      this.props.dispatch({
-          type: 'FB_LOGIN'
-          , loggedInUser
-      })
+      axios
+        .post('/api/users', loggedInUser)
+        .then(response => {
+            console.log('LoginPage.responseFacebook() user -->', response.data);
+            const loggedInUser = response.data;
+            this.setState({
+                user: loggedInUser
+                , loggedIn: true
+            })
+
+            this.props.dispatch({
+                type: 'FB_LOGIN'
+                , loggedInUser
+            })
+        })
 
     };
 
