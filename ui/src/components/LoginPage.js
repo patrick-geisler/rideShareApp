@@ -1,4 +1,7 @@
 import React from 'react';
+
+import {connect} from 'react-redux'
+
 import FacebookLogin from 'react-facebook-login'
 
 class LoginPage extends React.Component {
@@ -10,20 +13,31 @@ class LoginPage extends React.Component {
 
     logout = () => {
         this.setState({user: {}, loggedIn: false});
+        this.props.dispatch({
+            type: 'FB_LOGOUT'
+            , loggedInUser: {}
+        })
     }
 
     responseFacebook = (response) => {
-      console.log(response);
+      console.log('LoginPage.responseFacebook()', response);
+      const loggedInUser = {
+          source: 'facebook'
+          , id: response.id
+          , name: response.name
+          , picURL: response.picture.data.url
+          , acccessToken: response.acccessToken
+      }
       this.setState({
-          user: {
-              source: 'facebook'
-              , id: response.id
-              , name: response.name
-              , picURL: response.picture.data.url
-              , acccessToken: response.acccessToken
-          }
+          user: loggedInUser
           , loggedIn: true
       })
+
+      this.props.dispatch({
+          type: 'FB_LOGIN'
+          , loggedInUser
+      })
+
     };
 
     render() {
@@ -52,4 +66,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage;
+export default connect()(LoginPage);
