@@ -63,10 +63,13 @@ render(){
           <thead>
               <tr>
                   <th width="500" className='text-left'>Driver</th>
+                  <th width="400" className='text-left'>Date</th>
                   <th width="400" className='text-left'>Time</th>
-                  <th width="400" className='text-left'>Availible Seats</th>
+                  <th width="200" className='text-left'>Availible Seats</th>
                   <th width="400" className='text-left'>Leaving From</th>
-                  
+                  <th></th>
+
+
               </tr>
           </thead>
           <tbody>

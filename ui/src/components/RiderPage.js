@@ -9,11 +9,11 @@ class RiderPage extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
             })
-        
+
         }
-    
+
     switchState = (event) => {
-        if(event.target.checked == false){
+        if(event.target.checked === false){
             this.setState({
                 [event.target.name]: 'Downtown'
                 })
