@@ -24,14 +24,12 @@ componentDidMount(){
 }
 
 componentWillReceiveProps(nextProps){
-  console.log('TripSearchTable.componentWillReceiveProps()', nextProps);
   axios.get('/api/trips', {
     params: {
       ...nextProps.search
     }
   })
   .then(response =>{
-    console.log(`Comp will recieve search`, response.data)
     this.setState({
       searched: true,
       trips: response.data

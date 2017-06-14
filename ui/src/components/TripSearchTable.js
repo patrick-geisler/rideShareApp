@@ -15,16 +15,17 @@ componentDidMount(){
     }
   })
   .then(response =>{
-    console.log(`Component Did mount search`, response.data);
     this.setState({
       searched: true,
       trips: response.data
     })
   })
+  .catch(err =>{
+    console.log(err);
+  })
 }
 
 componentWillReceiveProps(nextProps){
-  console.log('TripSeearchTable.componentWillReceiveProps()', nextProps);
   axios.get('/api/trips', {
     params: {
       ...nextProps.search
