@@ -12,7 +12,7 @@ app.get('/api/ping', (request, response) => {
 
 const trips = [
     {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-01-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[]  }
-    , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Franklin", currPass:[]  }
+    , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[]  }
     , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[]  }
 ];
 
@@ -21,6 +21,12 @@ app.get('/api/trips', (request, response) => {
     const filterTrips = trips.filter(trip => {
 
         let finalResult = true;
+
+        if(!request.query.leavingFrom){
+            finalResult = (trip.leavingFrom === 'Downtown')
+        }else{
+            finalResult = (request.query.leavingFrom === trip.leavingFrom)
+        }
 
         if (request.query.earlyBound) {
             const earlyBound = Number(request.query.earlyBound.replace(':', ''));
@@ -44,7 +50,6 @@ app.get('/api/trips', (request, response) => {
 });
 
 app.post('/api/trips', (request, response) => {
-    console.log(request.body.numPass);
     let numPass = request.body.numPass
     if (numPass === ''){
       numPass = 1
