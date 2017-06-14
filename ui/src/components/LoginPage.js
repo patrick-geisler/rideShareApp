@@ -1,4 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux'
+
+import axios from 'axios'
+
 import FacebookLogin from 'react-facebook-login'
 
 class LoginPage extends React.Component {
@@ -9,21 +13,39 @@ class LoginPage extends React.Component {
     }
 
     logout = () => {
-        this.setState({login: '', loggedIn: false});
+        this.setState({user: {}, loggedIn: false});
+        this.props.dispatch({
+            type: 'FB_LOGOUT'
+            , loggedInUser: {}
+        })
     }
 
     responseFacebook = (response) => {
-      console.log(response);
-      this.setState({
-          user: {
-              source: 'facebook'
-              , id: response.id
-              , name: response.name
-              , picURL: response.picture.data.url
-              , acccessToken: response.acccessToken
-          }
-          , loggedIn: true
-      })
+      console.log('LoginPage.responseFacebook()', response);
+      const loggedInUser = {
+          source: 'facebook'
+          , sourceId: response.id
+          , name: response.name
+          , picURL: response.picture.data.url
+          , acccessToken: response.accessToken
+      }
+
+      axios
+        .post('/api/users', loggedInUser)
+        .then(response => {
+            console.log('LoginPage.responseFacebook() user -->', response.data);
+            const loggedInUser = response.data;
+            this.setState({
+                user: loggedInUser
+                , loggedIn: true
+            })
+
+            this.props.dispatch({
+                type: 'FB_LOGIN'
+                , loggedInUser
+            })
+        })
+
     };
 
     render() {
@@ -52,4 +74,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage;
+export default connect()(LoginPage);
