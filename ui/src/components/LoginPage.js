@@ -9,7 +9,7 @@ class LoginPage extends React.Component {
     }
 
     logout = () => {
-        this.setState({login: '', loggedIn: false});
+        this.setState({user: {}, loggedIn: false});
     }
 
     responseFacebook = (response) => {
