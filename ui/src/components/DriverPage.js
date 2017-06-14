@@ -2,6 +2,7 @@ import React from 'react';
 import '.././App.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 
 
@@ -18,7 +19,7 @@ class DriverPage extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('/api/trips', this.state)
+        axios.post('/api/trips', {...this.state, driver: this.props.loggedInUser})
             .then(response => {
                 console.log(response.data);
                 this.setState({ submitted: true })
@@ -46,7 +47,8 @@ class DriverPage extends React.Component {
 
 
     render() {
-        if (this.state.submitted === true) {
+        console.log(`${this.props.loggedInUser} username`)
+        if (this.state.submitted === true || !this.props.loggedInUser) {
             return <Redirect to="/rideshare" />
         }
         return (
@@ -59,7 +61,7 @@ class DriverPage extends React.Component {
                 <div className="row">
                     <div className="small-12 small-centered medium-4 medium-centered large-6 large-centered columns">
                         <label><span className="required">*</span> Driver Name</label>
-                        <input name="name" type="text" onChange={this.stateChange} placeholder="Please enter driver name" required />
+                        <input name="name" type="text" onChange={this.stateChange} value={this.props.loggedInUser.name} required />
                     </div>
                 </div>
                 <div className="row">
@@ -114,5 +116,8 @@ class DriverPage extends React.Component {
     }
 }
 
+const mapStatetoProps = (state) => {
+    return ({ loggedInUser: state.loggedInUser.user})
+}
 
-export default DriverPage;
+export default connect(mapStatetoProps, null) (DriverPage);
