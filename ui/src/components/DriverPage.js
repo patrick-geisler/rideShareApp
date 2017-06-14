@@ -65,7 +65,7 @@ class DriverPage extends React.Component {
                 <div className="row">
                     <div className="large-3 large-centered inline-block columns">
                         <label>Date:</label>
-                        <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} onChange={this.validateDate} type="date" required />
+                        <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} type="date" required />
                         {this.state.dateValidation}
                     </div>
                     <div className="large-3 large-centered inline-block columns">

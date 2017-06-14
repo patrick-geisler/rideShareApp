@@ -31,7 +31,7 @@ componentWillReceiveProps(nextProps){
     }
   })
   .then(response =>{
-    console.log(`Cpom will recieve search`, response.data)
+    console.log(`Comp will recieve search`, response.data)
     this.setState({
       searched: true,
       trips: response.data
