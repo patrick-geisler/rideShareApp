@@ -65,6 +65,8 @@ render(){
                   <th width="500" className='text-left'>Driver</th>
                   <th width="400" className='text-left'>Time</th>
                   <th width="400" className='text-left'>Availible Seats</th>
+                  <th width="400" className='text-left'>Leaving From</th>
+                  
               </tr>
           </thead>
           <tbody>

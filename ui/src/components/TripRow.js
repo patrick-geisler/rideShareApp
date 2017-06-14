@@ -12,6 +12,9 @@ const TripRow = (props) => {
       <td>
         {props.trip.numPass}
       </td>
+      <td>
+        {props.trip.leavingFrom}
+      </td>
     </tr>
   )
 }

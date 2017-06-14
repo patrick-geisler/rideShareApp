@@ -41,7 +41,7 @@ class RiderPage extends React.Component {
                             <div className="large-6 inline-block valign-top large-centered columns">
                                 <label htmlFor="text-switch-1">Please Select Leaving Location</label>
                                 <div className="switch switch-text large">
-                                    <input className="switch-input" id="text-switch-2" type="checkbox" name="LeavingFrom" onChange={this.switchState} />
+                                    <input className="switch-input" id="text-switch-2" type="checkbox" name="leavingFrom" onChange={this.switchState} />
                                     <label className="switch-paddle" htmlFor="text-switch-2">
                                         <span className="switch-active text-left" aria-hidden="true">Franklin</span>
                                         <span className="switch-inactive text-right" aria-hidden="true">Downtown</span>
