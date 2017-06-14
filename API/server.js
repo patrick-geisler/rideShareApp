@@ -11,7 +11,7 @@ app.get('/api/ping', (request, response) => {
 })
 
 const trips = [
-    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-01-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[],   driverUserId: 102331823714045 }
+    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-01-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[],   driverUserId: 203408 }
     , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[],   driverUserId: 102331823714044 }
     , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[],   driverUserId: null }
 ];
@@ -84,7 +84,9 @@ app.patch('/api/trips', (request, response) => {
 // filter by :id and change the num pass and curr pass[]
 
 
-const users = [];
+const users = [
+    {"source":"facebook","sourceId":"102331823714045","name":"Matt Matuszak","picURL":"https://scontent.xx.fbcdn.net/v/t1.0-1/c8.0.50.50/p50x50/19059947_103417910272103_3127153063138816926_n.jpg?oh=54a6b3a54becf4ed8177bcc2ace4c7b5&oe=59D13394","acccessToken":"EAACbYWEdb3sBAAJFrW5PEjjqwNxQVA2GsOlGXDQgUOwsiRSn4v5pYrZBj5gqG6gmBr2vJdZC9EGDjIWBo0ykEQIZB5RNQwHbhwefK4mnIFXCg2m5RPSK3EYo3uZCn373i49Skok9mZAsZChmXr7BFZCicVSnDlcO5bkfBapLngeZAs3FOCFZCyKYcJvaEgCsvlyrvkkCf14mTLQZDZD","lastLogin":"2017-06-14T20:57:23.703Z","id":203408}
+];
 
 app.post('/api/users', (request, response) => {
     console.log('/api/users POST', request.body)
