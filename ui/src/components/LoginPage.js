@@ -26,7 +26,7 @@ class LoginPage extends React.Component {
           , id: response.id
           , name: response.name
           , picURL: response.picture.data.url
-          , acccessToken: response.acccessToken
+          , acccessToken: response.accessToken
       }
       this.setState({
           user: loggedInUser

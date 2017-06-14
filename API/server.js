@@ -11,20 +11,23 @@ app.get('/api/ping', (request, response) => {
 })
 
 const trips = [
-    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-01-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[]  }
-    , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[]  }
-    , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[]  }
+    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-01-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[],   driverUserId: 102331823714045 }
+    , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[],   driverUserId: 102331823714044 }
+    , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[],   driverUserId: null }
 ];
 
 app.get('/api/trips', (request, response) => {
-    console.log(request.query);
+    console.log('/api/trips GET query --> ', request.query);
     const filterTrips = trips.filter(trip => {
 
-        let finalResult = true;
+        if (!request.query.loggedInUser)
+            return false;
 
-        if(!request.query.leavingFrom){
-            finalResult = (trip.leavingFrom === 'Downtown')
-        }else{
+        const loggedInUser = JSON.parse(request.query.loggedInUser)
+        let finalResult = (Number(trip.driverUserId) === Number(loggedInUser.id));
+        if (!finalResult) return false;
+
+        if(request.query.leavingFrom) {
             finalResult = (request.query.leavingFrom === trip.leavingFrom)
         }
 
