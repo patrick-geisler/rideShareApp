@@ -36,3 +36,10 @@ span{
   margin: 0px;
   padding: 0px;
 }
+.required{
+color: red;
+font-size: 18px;
+}
+.requiredText{
+  font-size: 14px;
+}
