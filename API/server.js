@@ -70,6 +70,19 @@ app.post('/api/trips', (request, response) => {
     response.json(newTrip)
 })
 
+app.patch('/api/trips', (request, response) => {
+    const changeId = trips.filter((obj) => {
+      if(obj.id === request.body.id){
+        obj.numPass -= 1
+        return obj
+      }
+    })
+    response.json(request.body)
+})
+
+// new patch route that takes the :id from the url sent by table row.
+// filter by :id and change the num pass and curr pass[]
+
 
 const users = [];
 
