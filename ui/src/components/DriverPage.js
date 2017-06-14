@@ -26,25 +26,25 @@ class DriverPage extends React.Component {
 
     }
     stateChange = (event) => {
+        if(event.target.name === 'date'){
+            var userdate = new Date(event.target.value).toJSON().slice(0, 10);
+            var today = new Date().toJSON().slice(0, 10);
+                if (userdate < today) {
+                    this.setState({
+                        dateValidation: 'Please select a valid future date'
+                    })
+                }else{
+                    this.setState({
+                        dateValidation: '',
+                    })
+                }
+        }
         this.setState({
             [event.target.name]: event.target.value
-        })
+            })
     }
 
-    validateDate = (event) => {
-        console.log(event)
-        var userdate = new Date(document.getElementById("mydate").value).toJSON().slice(0, 10);
-        var today = new Date().toJSON().slice(0, 10);
-        if (userdate < today) {
-            this.setState({
-                dateValidation: 'Please select a valid future date'
-            })
-        }else{
-            this.setState({
-                dateValidation: ''
-            })
-        }
-    }
+
     render() {
         if (this.state.submitted === true) {
             return <Redirect to="/rideshare" />
@@ -65,7 +65,7 @@ class DriverPage extends React.Component {
                 <div className="row">
                     <div className="large-3 large-centered inline-block columns">
                         <label>Date:</label>
-                        <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} onChange={this.validateDate} type="date" required />
+                        <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} type="date" required />
                         {this.state.dateValidation}
                     </div>
                     <div className="large-3 large-centered inline-block columns">
@@ -103,7 +103,7 @@ class DriverPage extends React.Component {
                 </div>
                 <div className="row">
                     <div className="large-3 large-centered columns">
-                        <button>Create Trip</button>
+                        <button disabled={this.state.date === '' || this.state.dateValidation == 'Please select a valid future date' }>Create Trip</button>
                     </div>
                 </div>
             </form>

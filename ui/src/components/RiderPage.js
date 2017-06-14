@@ -57,7 +57,6 @@ class RiderPage extends React.Component {
                                 <input type="time" placeholder='Late' name="lateBound" onChange={this.changeState}></input>
                             </div>
                         </div>
-                        <button className='button'> Filter </button>
                     </form>
                     {tripSearchTable}
                 </div>
