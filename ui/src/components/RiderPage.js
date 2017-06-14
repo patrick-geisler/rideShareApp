@@ -5,7 +5,6 @@ import '.././App.css';
 
 class RiderPage extends React.Component {
     changeState = (event) => {
-        console.log(event.target.checked)
         this.setState({
             [event.target.name]: event.target.value
             })
@@ -27,7 +26,6 @@ class RiderPage extends React.Component {
         event.preventDefault()
     }
     render() {
-        console.log('rider page.render ', this.state);
         const tripSearchTable = <TripSearchTable search={this.state} />
         return (
             <div className='row'>

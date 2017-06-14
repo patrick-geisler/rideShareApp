@@ -1,15 +1,27 @@
 import React from 'react'
-import dateformat from 'dateformat'
+import dateformat from 'dateformat-light'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
 
 class TripRow extends React.Component{
   state = {
     submitted: false
   }
+  submit = () => {
+      confirmAlert({
+        title: 'Confirm to submit',
+        message: 'Are you sure you want to book this ride?',
+        confirmLabel: 'Confirm',
+        cancelLabel: 'Cancel',
+        onConfirm: this.bookRide,
+        onCancel: () => {},
+      })
+    };
 
- bookRide = (event) => {
-    event.preventDefault()
+ bookRide = () => {
     axios.patch('/api/trips', this.props.trip, {numPass: 10})
     .then(response => {
       console.log("OK!");
@@ -34,7 +46,7 @@ class TripRow extends React.Component{
             {dateformat(this.props.trip.date, "mmm dd")}
           </td>
           <td>
-            {dateformat(this.props.trip.time, "h:MM")}
+            {this.props.trip.time}
           </td>
           <td>
             {this.props.trip.numPass}
@@ -43,7 +55,7 @@ class TripRow extends React.Component{
             {this.props.trip.leavingFrom}
           </td>
           <td>
-            <button onClick={this.bookRide}/>
+            <button onClick={this.submit}/>
           </td>
         </tr>
       )

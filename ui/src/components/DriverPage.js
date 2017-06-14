@@ -103,7 +103,7 @@ class DriverPage extends React.Component {
                 </div>
                 <div className="row">
                     <div className="large-3 large-centered columns">
-                        <button disabled={this.state.date === '' || this.state.dateValidation == 'Please select a valid future date' }>Create Trip</button>
+                        <button disabled={this.state.date === '' || this.state.dateValidation === 'Please select a valid future date' }>Create Trip</button>
                     </div>
                 </div>
             </form>
