@@ -22,7 +22,6 @@ app.get('/api/trips', (request, response) => {
 
         let finalResult = true;
 
-
         if (request.query.earlyBound) {
             const earlyBound = Number(request.query.earlyBound.replace(':', ''));
             // console.log('earlyBound', earlyBound)
@@ -45,11 +44,15 @@ app.get('/api/trips', (request, response) => {
 });
 
 app.post('/api/trips', (request, response) => {
-    console.log(request.body);
+    console.log(request.body.numPass);
+    let numPass = ''
+    if (request.body.numPass === ''){
+      numPass = 1
+    }
     const newTrip = {
         id: Math.floor(Math.random()*10000)
         , name: request.body.name
-        , numPass: request.body.numPass
+        , numPass: numPass
         , plateNum: request.body.plateNum
         , date: request.body.date
         , time: request.body.time

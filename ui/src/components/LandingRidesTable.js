@@ -48,7 +48,7 @@ componentWillReceiveProps(nextProps){
           <thead>
               <tr>
                   <th width="400">Driver</th>
-                  <th width="300" className="text-right">Passengers</th>
+                  <th width="300">Time</th>
                   <th width="400">Destination</th>
               </tr>
           </thead>

@@ -10,7 +10,7 @@ const RidesRow = (props) => {
         {props.trip.time}
       </td>
       <td>
-        {props.trip.numPass}
+        {props.trip.leavingFrom}
       </td>
     </tr>
   )
