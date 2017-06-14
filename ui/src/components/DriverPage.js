@@ -52,30 +52,30 @@ class DriverPage extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="row">
-                    <div className="small-10 small-centered large-8 large-centered columns">
+                    <div className="small-10 small-centered medium-4 medium-centered large-8 large-centered columns">
                         <h1>Please Fill Out Form to Create a Trip</h1>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="small-12 small-centered large-6 large-centered columns">
-                        <label>Driver Name</label>
+                    <div className="small-12 small-centered medium-4 medium-centered large-6 large-centered columns">
+                        <label><span className="required">*</span> Driver Name</label>
                         <input name="name" type="text" onChange={this.stateChange} placeholder="Please enter driver name" required />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="large-3 large-centered inline-block columns">
-                        <label>Date:</label>
+                    <div className="small-12 small-centered medium-4 medium-centered large-3 large-centered inline-block valign-top columns">
+                        <label><span className="required">*</span> Date:</label>
                         <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} type="date" required />
                         {this.state.dateValidation}
                     </div>
-                    <div className="large-3 large-centered inline-block columns">
-                        <label>Time:</label>
+                    <div className="small-12 small-centered medium-4 medium-centered large-3 large-centered inline-block valign-top columns">
+                        <label><span className="required">*</span> Time:</label>
                         <input placeholder="Please select time" name="time" onChange={this.stateChange} type="time" required />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="large-3 large-centered inline-block columns">
-                        <label>Leaving From</label>
+                    <div className="small-12 small-centered medium-4 medium-centered large-3 large-centered inline-block columns">
+                        <label><span className="required">*</span> Leaving From</label>
                         <input id="franklin" name="leavingFrom" type="radio" value="Franklin"
                             onChange={this.stateChange} checked={this.state.leavingFrom === 'Franklin'} required />
                         <label htmlFor="franklin">Franklin</label>
@@ -83,8 +83,8 @@ class DriverPage extends React.Component {
                             onChange={this.stateChange} checked={this.state.leavingFrom === 'Downtown'} required />
                         <label htmlFor="downtown">Downtown</label>
                     </div>
-                    <div className="large-3 large-centered inline-block columns">
-                        <label>Number of Passengers</label>
+                    <div className="small-6 small-centered  medium-4 medium-centered large-3 large-centered inline-block columns">
+                        <label><span className="required">*</span> Number of Passengers</label>
                         <select name="numPass" onChange={this.stateChange} required>
                             <option value="1">
                                 1
@@ -103,7 +103,10 @@ class DriverPage extends React.Component {
                 </div>
                 <div className="row">
                     <div className="large-3 large-centered columns">
-                        <button disabled={this.state.date === '' || this.state.dateValidation === 'Please select a valid future date' }>Create Trip</button>
+                        <button disabled={this.state.date === '' || this.state.dateValidation === 'Please select a valid future date' }>Create Trip</button> 
+                    </div>
+                    <div>
+                         <span className="requiredText margin-top-large"><span className="required">*</span>= Required Field</span>
                     </div>
                 </div>
             </form>
