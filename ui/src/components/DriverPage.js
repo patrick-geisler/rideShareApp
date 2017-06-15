@@ -64,9 +64,8 @@ class DriverPage extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="small-12 small-centered medium-4 medium-centered large-6 large-centered columns">
-                        <label><span className="required">*</span> Driver Name</label>
-                        <input name="name" type="text" onChange={this.stateChange} value={this.props.loggedInUser.name} required />
+                    <div className="small-12 small-centered medium-4 medium-centered large-6 large-centered margin-top-large columns">
+                        <h3>Wecome {this.props.loggedInUser.name}!</h3>
                     </div>
                 </div>
                 <div className="row">
