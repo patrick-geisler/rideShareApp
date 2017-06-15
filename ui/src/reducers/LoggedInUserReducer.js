@@ -8,6 +8,10 @@ export const LoggedInUserReducer = (state = {}, action) => {
             return ({
                 user: action.loggedInUser
             })
+        case 'FB_FIRE_LOGIN':
+            return ({
+                user: action.loggedInUser
+            })
         default: return state;
     }
 }
