@@ -8,8 +8,8 @@ const Navigation = (props) => {
   return(
     <div className="row padding-large">
       <div>
-          <ul className="filter-nav small-6 small-centered medium-8 medium-center large-6 inline-block valign-top columns">
-              <li className="filter-nav-entry"><Link to="/rideshare"><button>Landing Page</button></Link></li>
+          <ul className="filter-nav small-6 small-centered medium-8 medium-center large-6 large-centered inline-block valign-top columns">
+              <li className="filter-nav-entry"><Link to="/rideshare"><button>Home</button></Link></li>
               <li className="filter-nav-entry"><Link to="/rideshare/rider"><button>Book Ride</button></Link></li>
               <li className="filter-nav-entry"><Link to="/rideshare/driver"><button>Create Trip</button></Link></li>
           </ul>

@@ -29,11 +29,12 @@ class RiderPage extends React.Component {
     render() {
         const tripSearchTable = <TripSearchTable search={this.state} />
         return (
-            <div className='row'>
-                <h1>
-                    Book A Ride
-                </h1>
+            <div className='row margin-bottom-large'>
                 <div className='small-6 inline-block small-centered columns'>
+                    <h1>
+                    Book A Ride
+                    </h1>
+                    <hr/>
                     <form onSubmit={this.onSubmit}>
                         <div className="row">
                             <input className="large-6 inline-block valign-top columns" type="date" name="myDate" onChange={this.changeState}></input>
