@@ -1,4 +1,5 @@
 import React from 'react';
+import dateformat from 'dateformat-light'
 
 const DrivesRow = (props) => {
     console.log('DrivesRow() props-->', props)
@@ -6,7 +7,7 @@ const DrivesRow = (props) => {
     return (
         <tbody>
             <tr>
-                <td>{props.trip.date}</td>
+                <td>{dateformat(props.trip.date, "mmm dd")}</td>
                 <td>{props.trip.time}</td>
                 <td> {props.trip.leavingFrom} </td>
             </tr>
