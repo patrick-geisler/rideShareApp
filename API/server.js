@@ -156,15 +156,30 @@ app.post('/api/trips', (request, response) => {
 })
 
 app.patch('/api/trips', (request, response) => {
-  // console.log('/api/trips PATCH', request.body );
-    const changeId = trips.filter((obj) => {
-      return (obj.id === request.body.id)
-    })
-    if(changeId.length > 0){
-      changeId[0].currPass.push(request.body.id)
-    //   console.log('CURRR PASSSS',changeId[0].currPass);
-    }
-    response.json(changeId[0])
+  console.log('/api/trips PATCH', request.body );
+
+  for (var i = 0; i < trips.length; i++) {
+      if (Number(trips[i].id) === Number(request.body.tripid)) {
+          trips[i].currPass.push(request.body.loggedInUser)
+          console.log('pushed', trips[i].currPass)
+          break;
+      }
+  }
+
+  console.log(trips[i].currPass)
+
+
+    // const changeId = trips.filter((obj) => {
+    //     console.log(obj.id,request.body.tripid, (Number(obj.id) === Number(request.body.tripid)))
+    //   return (Number(obj.id) === Number(request.body.tripid))
+    // })
+    // if(changeId.length > 0){
+    //   changeId[0].currPass.push(request.body.loggedInUser)
+    //   console.log('--->updated',changeId[0])
+    //
+    // //   console.log('CURRR PASSSS',changeId[0].currPass);
+    // }
+    response.json(trips[i])
 })
 
 // new patch route that takes the :id from the url sent by table row.

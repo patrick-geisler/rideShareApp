@@ -10,6 +10,7 @@ state = {
   trips:[]
 }
 componentDidMount(){
+
   // console.log(this.props);
   // axios.get('/api/trips/search/LandingRidesTable', {
   //   params: {
@@ -26,6 +27,7 @@ componentDidMount(){
 }
 
 componentWillReceiveProps(nextProps){
+    console.log('---------------------------------------')
   axios.get('/api/trips/search/LandingRidesTable', {
     params: {
       id: nextProps.loggedInUser.id
