@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import axios from 'axios';
 
 import DrivesRow from './DrivesRow'
+import PassengerRow from './PassengerRow'
 
 class LandingDrivesTable extends React.Component {
     state = {
@@ -40,24 +41,26 @@ class LandingDrivesTable extends React.Component {
     }
     render() {
         console.log('TripSearchTable.render() currentProps-->', this.props);
-
-        const drivesRow = this.state.trips.map(trip => {
-            return <DrivesRow trip={trip} key={trip.id}/>
+        const drives = [];
+        const drivesRow = this.state.trips.forEach(trip => {
+            drives.push(<DrivesRow trip={trip} key={trip.id}/>)
+            if (trip.currPassDetails.length > 0)
+                drives.push(<PassengerRow trip={trip} key={'PASS' + trip.id} />)
         })
         return (
             <table className="table">
-                <caption>My Drives</caption>
+                <caption>My Upcomming Trips</caption>
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Leaving From</th>
-                        <th>Passengers</th>
+                        <th>Leaving From/Passengers</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {drivesRow}
-                </tbody>
+                {/* <tbody> */}
+                    {/* {drivesRow} */}
+                    {drives}
+                {/* </tbody> */}
             </table>
         )
     }

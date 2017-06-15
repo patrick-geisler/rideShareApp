@@ -44,14 +44,14 @@ componentWillReceiveProps(nextProps){
     })
     return(
       <table className="table">
-          <caption>My Trips</caption>
+          <caption>My Reserved Rides</caption>
           <thead>
               <tr>
-                  <th width="200"></th>
-                  <th width="400">Driver</th>
-                  <th width="300">Date</th>
-                  <th width="300">Time</th>
-                  <th width="400">Destination</th>
+                  <th></th>
+                  <th>Driver</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Destination</th>
               </tr>
           </thead>
           <tbody>
