@@ -5,18 +5,21 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 
-
+var today = new Date();
+var stringToday= today.getFullYear()+'-0' + (today.getMonth()+1) + '-' + today.getDate();
 
 class DriverPage extends React.Component {
     state = {
         name: "",
-        date: "",
+        date: stringToday,
         time: "",
         numPass: "",
         leavingFrom: "",
         submitted: false,
         dateValidation: ''
     }
+
+    
     handleSubmit = (event) => {
         event.preventDefault()
         axios.post('/api/trips', {...this.state, driver: this.props.loggedInUser})
@@ -44,10 +47,12 @@ class DriverPage extends React.Component {
             [event.target.name]: event.target.value
             })
     }
+   
 
 
     render() {
-        console.log(`${this.props.loggedInUser} username`)
+        // console.log(`${this.props.loggedInUser} username`)
+
         if (this.state.submitted === true || !this.props.loggedInUser) {
             return <Redirect to="/rideshare" />
         }
@@ -67,7 +72,7 @@ class DriverPage extends React.Component {
                 <div className="row">
                     <div className="small-12 small-centered medium-4 medium-centered large-3 large-centered inline-block valign-top columns">
                         <label><span className="required">*</span> Date:</label>
-                        <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} type="date" required />
+                        <input placeholder="Please select date" name="date" id="mydate" onChange={this.stateChange} type="date" defaultValue={this.state.date} required />
                         {this.state.dateValidation}
                     </div>
                     <div className="small-12 small-centered medium-4 medium-centered large-3 large-centered inline-block valign-top columns">
