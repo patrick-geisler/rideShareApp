@@ -12,7 +12,7 @@ app.get('/api/ping', (request, response) => {
 
 const trips = [
     {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-06-01" ,time: '08:00' ,leavingFrom: "Franklin", currPass:[523960],   driverUserId: 203408 }
-    , {id: 451, name: "Joben", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: '09:00' ,leavingFrom: "Downtown", currPass:[],   driverUserId: 203408 }
+    , {id: 451, name: "Joben", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: '09:00' ,leavingFrom: "Downtown", currPass:[523960],   driverUserId: 203408 }
     , {id: 789, name: "Patrick", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: '08:30' ,leavingFrom: "Downtown", currPass:[203408],   driverUserId: 523960 }
 ];
 
@@ -54,13 +54,7 @@ app.get('/api/trips/search', (request, response) => {
         return (finalResult)
     })
 
-    const returnTrips = filterTrips.map(trip => {
-        for (var i = 0; i < trip.currPass.length; i++) {
-            trip.currPass[i] = users.get(trip.currPass[i]);
-        }
-        trip.driver = users.get(trip.driverUserId)
-        return trip;
-    })
+    const returnTrips = mapReturnTrips(filterTrips)
     // console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
     response.json(returnTrips)
 });
@@ -101,21 +95,45 @@ app.get('/api/trips', (request, response) => {
 
     // console.log('********** Users -->', users)
 
-    const returnTrips = filterTrips.map(trip => {
-        trip.currPassDetails = [];
-        for (var i = 0; i < trip.currPass.length; i++) {
-            // console.log('Passengers --->', trip.currPass[i], users.get(Number(trip.currPass[i])))
-            console.log('***** currPass[]', trip.currPass[i])
-            // trip.currPass[i] = users.get(trip.currPass[i]);
-            trip.currPassDetails[i] = users.get(trip.currPass[i]);
-        }
-        trip.driver = users.get(trip.driverUserId)
-        return trip;
-    })
+    const returnTrips = mapReturnTrips(filterTrips)
     // console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
     response.json(returnTrips)
 });
 
+app.get('/api/trips/search/LandingRidesTable', (request, response) => {
+    console.log('/api/trips/LANDING GET query --> ', request.query);
+    const filterTrips = trips.filter(trip => {
+      let rider = false
+      console.log('currPass ====',request.query.id);
+      for (var i = 0; i < trip.currPass.length; i++) {
+        if (trip.currPass[i] === Number(request.query.id)){
+          console.log(trip.currPass[i]);
+          rider = true
+          break
+        }
+      }
+      return rider
+
+    })
+
+    const returnTrips = mapReturnTrips(filterTrips)
+    response.json(returnTrips)
+});
+
+const mapReturnTrips = (filterTrips) => {
+    const mappedTrips = filterTrips.map(trip => {
+      trip.currPassDetails = [];
+      for (var i = 0; i < trip.currPass.length; i++) {
+          // console.log('Passengers --->', trip.currPass[i], users.get(Number(trip.currPass[i])))
+          // console.log('***** currPass[]', trip.currPass[i])
+          // trip.currPass[i] = users.get(trip.currPass[i]);
+          trip.currPassDetails[i] = users.get(trip.currPass[i]);
+      }
+      trip.driver = users.get(trip.driverUserId)
+      return trip;
+  })
+  return mappedTrips
+}
 app.post('/api/trips', (request, response) => {
     // console.log('/api/trips POST' ,request.body.driver.id)
     let numPass = request.body.numPass
