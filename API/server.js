@@ -11,9 +11,9 @@ app.get('/api/ping', (request, response) => {
 })
 
 const trips = [
-    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-01-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[523960],   driverUserId: 203408 }
-    , {id: 451, name: "Patrick", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[],   driverUserId: 102331823714044 }
-    , {id: 789, name: "Jobben", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[203408],   driverUserId: 523960 }
+    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-06-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[523960],   driverUserId: 203408 }
+    , {id: 451, name: "Joben", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[],   driverUserId: 203408 }
+    , {id: 789, name: "Patrick", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[203408],   driverUserId: 523960 }
 ];
 
 const users = new Map();
@@ -24,6 +24,46 @@ users.set(523960, {"source":"facebook","sourceId":"10154897138253802","name":"Pa
 const userSourceToUser = new Map();
 userSourceToUser.set(users.get(203408).sourceId, users.get(203408));
 userSourceToUser.set(users.get(523960).sourceId, users.get(523960));
+
+app.get('/api/trips/search', (request, response) => {
+    console.log('/api/trips GET query --> ', request.query);
+    const filterTrips = trips.filter(trip => {
+
+        if(request.query.leavingFrom) {
+            finalResult = (request.query.leavingFrom === trip.leavingFrom)
+        }
+
+        if(request.query.notUser){
+          finalResult = (Number(request.query.notUser) !== Number(trip.driverUserId))
+        }
+
+        if (request.query.earlyBound) {
+            const earlyBound = Number(request.query.earlyBound.replace(':', ''));
+            // console.log('earlyBound', earlyBound)
+            finalResult = (earlyBound <= trip.time)
+        }
+
+        if (finalResult && request.query.lateBound) {
+            const lateBound = Number(request.query.lateBound.replace(':', ''));
+            // console.log('earlyBound', lateBound)
+            finalResult = (lateBound >= trip.time)
+        }
+
+        if (finalResult && request.query.myDate)
+            finalResult = (request.query.myDate === trip.date)
+        return (finalResult)
+    })
+
+    const returnTrips = filterTrips.map(trip => {
+        for (var i = 0; i < trip.currPass.length; i++) {
+            trip.currPass[i] = users.get(trip.currPass[i]);
+        }
+        trip.driver = users.get(trip.driverUserId)
+        return trip;
+    })
+    console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
+    response.json(returnTrips)
+});
 
 
 app.get('/api/trips', (request, response) => {
@@ -41,6 +81,7 @@ app.get('/api/trips', (request, response) => {
             finalResult = (request.query.leavingFrom === trip.leavingFrom)
         }
 
+
         if (request.query.earlyBound) {
             const earlyBound = Number(request.query.earlyBound.replace(':', ''));
             // console.log('earlyBound', earlyBound)
@@ -55,7 +96,6 @@ app.get('/api/trips', (request, response) => {
 
         if (finalResult && request.query.myDate)
             finalResult = (request.query.myDate === trip.date)
-
         return (finalResult)
     })
 
@@ -66,7 +106,7 @@ app.get('/api/trips', (request, response) => {
         trip.driver = users.get(trip.driverUserId)
         return trip;
     })
-
+    console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
     response.json(returnTrips)
 });
 
@@ -91,13 +131,15 @@ app.post('/api/trips', (request, response) => {
 })
 
 app.patch('/api/trips', (request, response) => {
+  console.log('/api/trips PATCH', request.body );
     const changeId = trips.filter((obj) => {
-      if(obj.id === request.body.id){
-        obj.numPass -= 1
-        return obj
-      }
+      return (obj.id === request.body.id)
     })
-    response.json(request.body)
+    if(changeId.length > 0){
+      changeId[0].currPass.push(request.body.id)
+      console.log('CURRR PASSSS',changeId[0].currPass);
+    }
+    response.json(changeId[0])
 })
 
 // new patch route that takes the :id from the url sent by table row.

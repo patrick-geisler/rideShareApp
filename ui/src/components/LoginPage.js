@@ -55,7 +55,7 @@ class LoginPage extends React.Component {
                 <div>
                     <FacebookLogin
                         appId="170842543452027"
-                        autoLoad={false}
+                        autoLoad={true}
                         fields="name,email,picture"
                         callback={this.responseFacebook} />
                 </div>

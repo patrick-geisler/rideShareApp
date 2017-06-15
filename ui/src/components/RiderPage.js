@@ -1,6 +1,7 @@
 import React from 'react';
 import TripSearchTable from './TripSearchTable'
 import '.././App.css';
+import { connect } from 'react-redux';
 
 
 class RiderPage extends React.Component {
@@ -31,7 +32,7 @@ class RiderPage extends React.Component {
             <div className='row'>
                 <h1>
                     Book A Ride
-        </h1>
+                </h1>
                 <div className='small-6 inline-block small-centered columns'>
                     <form onSubmit={this.onSubmit}>
                         <div className="row">
@@ -65,4 +66,8 @@ class RiderPage extends React.Component {
 }
 
 
-export default RiderPage;
+const mapStatetoProps = (state) => {
+    return ({ loggedInUser: state.loggedInUser.user})
+}
+
+export default connect(mapStatetoProps, null) (RiderPage);
