@@ -40,7 +40,7 @@ class RiderPage extends React.Component {
                                 <label htmlFor="text-switch-1">Please Select Leaving Location</label>
                                 <div className="switch switch-text large">
                                     <input className="switch-input" id="text-switch-2" type="checkbox" name="leavingFrom" onChange={this.switchState} />
-                                    <label className="switch-paddle" htmlFor="text-switch-2">
+                                    <label className="switch-paddle" htmlFor="text-switch-2" style={{background: '#336283'}}>
                                         <span className="switch-active text-left" aria-hidden="true">Franklin</span>
                                         <span className="switch-inactive text-right" aria-hidden="true">Downtown</span>
                                     </label>
