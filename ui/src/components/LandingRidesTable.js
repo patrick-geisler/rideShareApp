@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import RidesRow from './RidesRow'
+import { connect } from 'react-redux';
 
 
 class LandingRidesTable extends React.Component{
@@ -9,24 +10,25 @@ state = {
   trips:[]
 }
 componentDidMount(){
-  axios.get('/api/trips', {
-    params: {
-      ...this.props.search
-    }
-  })
-  .then(response =>{
-    console.log(`Component Did mount search`, response.data);
-    this.setState({
-      searched: true,
-      trips: response.data
-    })
-  })
+  // console.log(this.props);
+  // axios.get('/api/trips/search/LandingRidesTable', {
+  //   params: {
+  //     // id: this.props.loggedInUser.id
+  //   }
+  // })
+  // .then(response =>{
+  //   console.log(`Component Did mount search`, response.data);
+  //   this.setState({
+  //     searched: true,
+  //     trips: response.data
+  //   })
+  // })
 }
 
 componentWillReceiveProps(nextProps){
-  axios.get('/api/trips', {
+  axios.get('/api/trips/search/LandingRidesTable', {
     params: {
-      ...nextProps.search
+      id: nextProps.loggedInUser.id
     }
   })
   .then(response =>{
@@ -45,7 +47,9 @@ componentWillReceiveProps(nextProps){
           <caption>My Trips</caption>
           <thead>
               <tr>
+                  <th width="200"></th>
                   <th width="400">Driver</th>
+                  <th width="300">Date</th>
                   <th width="300">Time</th>
                   <th width="400">Destination</th>
               </tr>
@@ -58,4 +62,8 @@ componentWillReceiveProps(nextProps){
   }
 }
 
-export default LandingRidesTable
+const mapStatetoProps = (state) => {
+    return ({ loggedInUser: state.loggedInUser.user})
+}
+
+export default connect(mapStatetoProps, null) (LandingRidesTable);
