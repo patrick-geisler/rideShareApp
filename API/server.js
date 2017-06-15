@@ -63,6 +63,7 @@ app.get('/api/trips', (request, response) => {
         for (var i = 0; i < trip.currPass.length; i++) {
             trip.currPass[i] = users.get(trip.currPass[i]);
         }
+        trip.driver = users.get(trip.driverUserId)
         return trip;
     })
 
