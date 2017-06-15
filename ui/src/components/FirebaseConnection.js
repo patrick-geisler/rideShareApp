@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 class FirebaseConnection {
 
@@ -20,9 +21,20 @@ class FirebaseConnection {
     }
 
     facebookSignIn() {
-        // firebase.auth().signInWithRedirect(this.provider);
         return firebase.auth().signInWithPopup(this.provider)
         //return firebase.auth().getRedirectResult();
+    }
+
+    writeData() {
+        const newKey = firebase.database().ref().child('test').push().key;
+        firebase.database().ref('test/' + newKey).set({
+            username: 'Matt',
+            email: 'matt',
+            profile_picture : 'imageUrl'
+          })
+          .then(newTest => {
+              console.log('FirebaseConnection.writeData() newTest -->', newTest)
+          });
     }
 
 }

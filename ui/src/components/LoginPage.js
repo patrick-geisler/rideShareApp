@@ -24,6 +24,7 @@ class LoginPage extends React.Component {
 
     facebookLogin = () => {
         console.log('LoginPage.facebookLogin()')
+        firebaseConnection.writeData()
         firebaseConnection
         .facebookSignIn()
         .then(result => {
