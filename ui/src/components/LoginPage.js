@@ -5,7 +5,7 @@ import axios from 'axios'
 
 // import FacebookLogin from 'react-facebook-login'
 
-import {firebaseFaceBookLogin} from './FirebaseFacebookLogin'
+import {firebaseConnection} from './FirebaseConnection'
 
 class LoginPage extends React.Component {
 
@@ -24,18 +24,10 @@ class LoginPage extends React.Component {
 
     facebookLogin = () => {
         console.log('LoginPage.facebookLogin()')
-        firebaseFaceBookLogin
-        .signIn()
+        firebaseConnection
+        .facebookSignIn()
         .then(result => {
             console.log('FirebaseFacebookLogin.signIn() result -->', result);
-            if (result.credential) {
-                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                var token = result.credential.accessToken;
-                // ...
-            }
-            // The signed-in user info.
-            var user = result.user;
-            console.log('result', result)
             const loggedInUserFromFB = {
                 source: 'facebook'
                 , sourceId: result.additionalUserInfo.profile.id
@@ -63,15 +55,6 @@ class LoginPage extends React.Component {
 
         }).catch(error => {
             console.log('FirebaseFacebookLogin.signIn() error -->', error);
-
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
         });
     }
 

@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-class FirebaseFacebookLogin {
+class FirebaseConnection {
 
     constructor() {
         // Initialize Firebase
@@ -19,7 +19,7 @@ class FirebaseFacebookLogin {
         //firebase.auth().signInWithRedirect(provider);
     }
 
-    signIn() {
+    facebookSignIn() {
         // firebase.auth().signInWithRedirect(this.provider);
         return firebase.auth().signInWithPopup(this.provider)
         //return firebase.auth().getRedirectResult();
@@ -27,6 +27,6 @@ class FirebaseFacebookLogin {
 
 }
 
-const firebaseFaceBookLogin = new FirebaseFacebookLogin();
+const firebaseConnection = new FirebaseConnection();
 
-export {firebaseFaceBookLogin};
+export {firebaseConnection};
