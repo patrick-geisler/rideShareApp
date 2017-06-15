@@ -49,7 +49,7 @@ class LandingDrivesTable extends React.Component {
         })
         return (
             <table className="table">
-                <caption>My Drives</caption>
+                <caption>My Upcomming Trips</caption>
                 <thead>
                     <tr>
                         <th>Date</th>
