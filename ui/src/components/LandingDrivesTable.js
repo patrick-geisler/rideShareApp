@@ -49,9 +49,10 @@ class LandingDrivesTable extends React.Component {
                 <caption>My Drives</caption>
                 <thead>
                     <tr>
-                        <th width="400">Driver</th>
-                        <th width="300">Passengers</th>
-                        <th width="400">Leaving From</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Leaving From</th>
+                        <th>Passengers</th>
                     </tr>
                 </thead>
                 <tbody>
