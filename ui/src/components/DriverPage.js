@@ -61,6 +61,7 @@ class DriverPage extends React.Component {
                 <div className="row">
                     <div className="small-10 small-centered medium-4 medium-centered large-8 large-centered columns">
                         <h1>Please Fill Out Form to Create a Trip</h1>
+                        <hr/>
                     </div>
                 </div>
                 <div className="row">
@@ -109,7 +110,7 @@ class DriverPage extends React.Component {
                 </div>
                 <div className="row">
                     <div className="large-3 large-centered columns">
-                        <button disabled={this.state.date === '' || this.state.dateValidation === 'Please select a valid future date' }>Create Trip</button> 
+                        <button disabled={this.state.date === '' || this.state.time === '' || this.state.leavingFrom === '' || this.state.dateValidation === 'Please select a valid future date'}>Create Trip</button> 
                     </div>
                     <div>
                          <span className="requiredText margin-top-large"><span className="required">*</span>= Required Field</span>
