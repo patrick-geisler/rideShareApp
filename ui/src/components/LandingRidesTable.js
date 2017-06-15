@@ -46,7 +46,7 @@ componentWillReceiveProps(nextProps){
     })
     return(
       <table className="table">
-          <caption>My Reserved Rides</caption>
+          <caption><u>My Reserved Rides</u></caption>
           <thead>
               <tr>
                   <th></th>

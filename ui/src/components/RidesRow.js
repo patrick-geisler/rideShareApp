@@ -1,4 +1,5 @@
 import React from 'react';
+import dateformat from 'dateformat-light'
 
 const RidesRow = (props) => {
   console.log(props.trip);
@@ -8,10 +9,10 @@ const RidesRow = (props) => {
         <img src={props.trip.driver.picURL} alt='driverPic'/>
       </td>
       <td>
-        {props.trip.name}
+        {props.trip.driver.name}
       </td>
       <td>
-        {props.trip.date}
+        {dateformat(props.trip.date, "mmm dd")}
       </td>
       <td>
         {props.trip.time}

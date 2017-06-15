@@ -14,16 +14,21 @@ const trips = [
     {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-06-01" ,time: '08:00' ,leavingFrom: "Franklin", currPass:[523960],   driverUserId: 203408 }
     , {id: 451, name: "Joben", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: '09:00' ,leavingFrom: "Downtown", currPass:[523960],   driverUserId: 203408 }
     , {id: 789, name: "Patrick", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: '08:30' ,leavingFrom: "Downtown", currPass:[203408],   driverUserId: 523960 }
+    , {id: 555, name: "Collin", numPass: 1, plateNum: "LV2RIDE", date: "2017-07-01" ,time: '08:30' ,leavingFrom: "Franklin", currPass:[523960,203408],   driverUserId: 734109 }
+    
 ];
 
 const users = new Map();
 
 users.set(203408, {"source":"facebook","sourceId":"102331823714045","name":"Matt Matuszak","picURL":"https://scontent.xx.fbcdn.net/v/t1.0-1/c8.0.50.50/p50x50/19059947_103417910272103_3127153063138816926_n.jpg?oh=54a6b3a54becf4ed8177bcc2ace4c7b5&oe=59D13394","acccessToken":"EAACbYWEdb3sBAAJFrW5PEjjqwNxQVA2GsOlGXDQgUOwsiRSn4v5pYrZBj5gqG6gmBr2vJdZC9EGDjIWBo0ykEQIZB5RNQwHbhwefK4mnIFXCg2m5RPSK3EYo3uZCn373i49Skok9mZAsZChmXr7BFZCicVSnDlcO5bkfBapLngeZAs3FOCFZCyKYcJvaEgCsvlyrvkkCf14mTLQZDZD","lastLogin":"2017-06-14T20:57:23.703Z","id":203408})
 users.set(523960, {"source":"facebook","sourceId":"10154897138253802","name":"Patrick Geisler","picURL":"https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/12308396_10153392969363802_8172349850012411318_n.jpg?oh=9c03ed93348ca848caa871fb27e2ad69&oe=59E7548D","acccessToken":"EAACbYWEdb3sBAKBP7IfhZB0FCPAxRcBmOSozWPXvbUX6Ay6KZCxg7IfXqAG5DzsNlMAGYUkJEKnVCQ1JcOyU4KePZCtALxZCO7YR8HK8kZCYqyK0Sy4IXwJ6ZAQSkGr7pOlV3nMoYEEJ0kmU9gV6fSVQMXLUcfSQJfA3N3ttiFWZBkVso6x87j8FoevfZCZAKkKQZD","lastLogin":"2017-06-14T21:10:59.011Z","id":523960})
+users.set(734109, {"source":"facebook","sourceId":"10213905910629743","name":"Collin Kosinski","picURL":"https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/13325450_10210082543007942_8777820238572956364_n.jpg?oh=186f0b49103e7d7f24e1497be64e4ee3&oe=59E26890","acccessToken":"EAACbYWEdb3sBAMSLXS09CwEVwXgMe5JXS7ck4nLMJQweMdiTzkcbcCR0Spp9n0H0c5SgoPd5LgriZC2cacaNp47UwPSdn2ZCzJQKy89put2a3YnngBBsmUU9T3kngWavtE8LAZBayJnBNjDHZBrtZBkaYoWetTShzgzdvk6G1BlZAP9HhTWMbUjaf6OEKdsZCMZD","lastLogin":"2017-06-15T17:34:02.431Z","id":734109})
 
 const userSourceToUser = new Map();
 userSourceToUser.set(users.get(203408).sourceId, users.get(203408));
 userSourceToUser.set(users.get(523960).sourceId, users.get(523960));
+userSourceToUser.set(users.get(734109).sourceId, users.get(734109));
+
 
 app.get('/api/trips/search', (request, response) => {
     // console.log('/api/trips GET query --> ', request.query);
