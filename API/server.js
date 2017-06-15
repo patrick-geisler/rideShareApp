@@ -11,9 +11,9 @@ app.get('/api/ping', (request, response) => {
 })
 
 const trips = [
-    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-06-01" ,time: 800 ,leavingFrom: "Franklin", currPass:[523960],   driverUserId: 203408 }
-    , {id: 451, name: "Joben", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: 900 ,leavingFrom: "Downtown", currPass:[],   driverUserId: 203408 }
-    , {id: 789, name: "Patrick", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: 830 ,leavingFrom: "Downtown", currPass:[203408],   driverUserId: 523960 }
+    {id: 123, name: "Mark", numPass: 10, plateNum: "267-JKL", date: "2017-06-01" ,time: '08:00' ,leavingFrom: "Franklin", currPass:[523960],   driverUserId: 203408 }
+    , {id: 451, name: "Joben", numPass: 4, plateNum: "849-YUI", date: "2017-06-01" ,time: '09:00' ,leavingFrom: "Downtown", currPass:[],   driverUserId: 203408 }
+    , {id: 789, name: "Patrick", numPass: 1, plateNum: "LV2RIDE", date: "2017-06-01" ,time: '08:30' ,leavingFrom: "Downtown", currPass:[203408],   driverUserId: 523960 }
 ];
 
 const users = new Map();
@@ -26,7 +26,7 @@ userSourceToUser.set(users.get(203408).sourceId, users.get(203408));
 userSourceToUser.set(users.get(523960).sourceId, users.get(523960));
 
 app.get('/api/trips/search', (request, response) => {
-    console.log('/api/trips GET query --> ', request.query);
+    // console.log('/api/trips GET query --> ', request.query);
     const filterTrips = trips.filter(trip => {
 
         if(request.query.leavingFrom) {
@@ -61,13 +61,13 @@ app.get('/api/trips/search', (request, response) => {
         trip.driver = users.get(trip.driverUserId)
         return trip;
     })
-    console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
+    // console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
     response.json(returnTrips)
 });
 
 
 app.get('/api/trips', (request, response) => {
-    console.log('/api/trips GET query --> ', request.query);
+    // console.log('/api/trips GET query --> ', request.query);
     const filterTrips = trips.filter(trip => {
 
         if (!request.query.loggedInUser)
@@ -99,19 +99,25 @@ app.get('/api/trips', (request, response) => {
         return (finalResult)
     })
 
+    // console.log('********** Users -->', users)
+
     const returnTrips = filterTrips.map(trip => {
+        trip.currPassDetails = [];
         for (var i = 0; i < trip.currPass.length; i++) {
-            trip.currPass[i] = users.get(trip.currPass[i]);
+            // console.log('Passengers --->', trip.currPass[i], users.get(Number(trip.currPass[i])))
+            console.log('***** currPass[]', trip.currPass[i])
+            // trip.currPass[i] = users.get(trip.currPass[i]);
+            trip.currPassDetails[i] = users.get(trip.currPass[i]);
         }
         trip.driver = users.get(trip.driverUserId)
         return trip;
     })
-    console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
+    // console.log('final result is equal to this ----->>>>>>>>>>>', returnTrips);
     response.json(returnTrips)
 });
 
 app.post('/api/trips', (request, response) => {
-    console.log('/api/trips POST' ,request.body.driver.id)
+    // console.log('/api/trips POST' ,request.body.driver.id)
     let numPass = request.body.numPass
     if (numPass === ''){
       numPass = 1
@@ -125,19 +131,20 @@ app.post('/api/trips', (request, response) => {
         , time: request.body.time
         , leavingFrom: request.body.leavingFrom
         , driverUserId: request.body.driver.id
+        , currPass: []
     }
     trips.push(newTrip)
     response.json(newTrip)
 })
 
 app.patch('/api/trips', (request, response) => {
-  console.log('/api/trips PATCH', request.body );
+  // console.log('/api/trips PATCH', request.body );
     const changeId = trips.filter((obj) => {
       return (obj.id === request.body.id)
     })
     if(changeId.length > 0){
       changeId[0].currPass.push(request.body.id)
-      console.log('CURRR PASSSS',changeId[0].currPass);
+    //   console.log('CURRR PASSSS',changeId[0].currPass);
     }
     response.json(changeId[0])
 })
@@ -156,7 +163,7 @@ app.patch('/api/trips', (request, response) => {
 
 
 app.post('/api/users', (request, response) => {
-    console.log('/api/users POST', request.body);
+    // console.log('/api/users POST', request.body);
 
     if (userSourceToUser.get(request.body.sourceId)) {
         userSourceToUser.get(request.body.sourceId).lastLogin = new Date();
