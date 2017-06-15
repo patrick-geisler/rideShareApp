@@ -63,8 +63,8 @@ class LoginPage extends React.Component {
         } else {
             return (
                 <div className='row'>
-                    <div className='small-12 columns'>
-                        <p>{this.state.user.name} <img src={this.state.user.picURL} alt='pic' /> <span onClick={this.logout} className="icon icon-exit" style={{fontSize: '2em', padding: '10px'}}></span></p>
+                    <div className='card small-12 columns '>
+                        <p>{this.state.user.name} <img className="margin-left-small" src={this.state.user.picURL} alt='pic' /> <span onClick={this.logout} className="icon icon-exit" style={{fontSize: '2em', padding: '10px'}}></span></p>
                     </div>
                 </div>
             )
